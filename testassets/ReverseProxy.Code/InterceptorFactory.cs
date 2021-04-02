@@ -58,7 +58,10 @@ namespace Yarp.ReverseProxy.Sample
                 ContentHeaders = request.Content?.Headers,
             };
 
-            var json = JsonSerializer.Serialize(data);
+            var json = JsonSerializer.Serialize(data, new JsonSerializerOptions()
+            {
+                WriteIndented = true,
+            });
             var response = new HttpResponseMessage()
             {
                 Content = new StringContent(json, Encoding.UTF8, "application/json"),
