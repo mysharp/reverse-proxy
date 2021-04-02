@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Yarp.ReverseProxy.Abstractions;
 using Yarp.ReverseProxy.Abstractions.Config;
 using Yarp.ReverseProxy.Middleware;
+using Yarp.ReverseProxy.Service.Proxy.Infrastructure;
 using Yarp.ReverseProxy.Telemetry.Consumption;
 
 namespace Yarp.ReverseProxy.Sample
@@ -91,6 +92,8 @@ namespace Yarp.ReverseProxy.Sample
             services.AddSingleton<IProxyMetricsConsumer, ProxyMetricsConsumer>();
             services.AddScoped<IProxyTelemetryConsumer, ProxyTelemetryConsumer>();
             services.AddProxyTelemetryListener();
+
+            services.AddSingleton<IProxyHttpClientFactory, InterceptorFactory>();
         }
 
         /// <summary>
